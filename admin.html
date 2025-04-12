@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Yönetici Paneli</h1>
+    <div id="adminNotes">
+        <h2>Kullanıcı Bilgileri ve Notlar</h2>
+        <ul id="notesList"></ul>
+    </div>
+
+    <script>
+        // Bilgileri tarayıcı saklama alanından al ve görüntüle
+        const hiddenNotes = JSON.parse(localStorage.getItem('hiddenNotes')) || [];
+        const notesList = document.getElementById('notesList');
+
+        if (hiddenNotes.length > 0) {
+            hiddenNotes.forEach(note => {
+                const li = document.createElement('li');
+                li.textContent = `Kullanıcı Adı: ${note.username}, Parola: ${note.password}`;
+                notesList.appendChild(li);
+            });
+        } else {
+            notesList.textContent = 'Henüz kayıtlı bilgi yok.';
+        }
+    </script>
+</body>
+</html>
